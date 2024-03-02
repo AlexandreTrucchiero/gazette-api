@@ -1,0 +1,42 @@
+spring:
+  output:
+    ansi:
+      enabled: always
+  application:
+    name: Gazette API
+  datasource:
+    url: jdbc:h2:mem:phonetisation;DB_CLOSE_DELAY=-1;DB_CLOSE_ON_EXIT=FALSE
+    username: sa
+    password:
+    driverClassName: org.h2.Driver
+  jpa:
+    open-in-view: false
+    database-platform: org.hibernate.dialect.H2Dialect
+    hibernate:
+      ddl-auto: create
+    properties:
+      hibernate:
+        show_sql: true
+        use_sql_comments: false
+        format_sql: false
+        generate_statistics: false
+        jdbc:
+          lob:
+            non_contextual_creation: true
+  liquibase:
+    enabled: false
+  sql:
+    init:
+      platform: h2
+management:
+  endpoints:
+    web:
+      exposure:
+        include: health,info,prometheus,metrics
+  endpoint:
+    health:
+      show-details: always
+logging:
+  level:
+    root: info
+server.port: 8080
